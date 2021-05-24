@@ -1,8 +1,10 @@
+# pylint: disable=E0401,C0301,C0114,C0116,C0121,C0103,R0914,R0913,C0303,C0200,W0622,R1710.R1705,R1702,R0912,E0402
+import re
 import sqlite3
 from datetime import datetime
 from .Hospital_payment_portal import Payment
 
-import re
+
 
 connection = sqlite3.connect("project.db")
 cursor = connection.cursor()

@@ -1,3 +1,5 @@
+# pylint: disable=C0103,C0114,C0116
+
 import sqlite3
 
 conn = sqlite3.connect('project.db')

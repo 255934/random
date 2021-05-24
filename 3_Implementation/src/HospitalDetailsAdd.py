@@ -1,3 +1,4 @@
+# pylint: disable= R0911, R0912, R0913,C0301,C0114,C0116,C0121,C0103
 import sqlite3
 import re
 conn = sqlite3.connect('project.db')

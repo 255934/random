@@ -1,3 +1,4 @@
+# pylint: disable=C0301,C0114,C0116,C0121,C0103,R0914,R0913,C0303,C0200,W0622,R1710
 import sqlite3
 from sys import exit
 
@@ -81,7 +82,6 @@ def add_doctor(doctorlicno, docname, area, hospitallicno, address, phone, aadhaa
             print(""" DoctorID Must be 8 characters,password 8 characters,HospitalId 8 characters,
              Phone 10 digits, Aadhar 12 digits""")
             return -1
-
         insert = """insert into doctors (D_id, name, SPECIALIZATION, H_id, Address, 
         PHONE, AADHAAR,password) values(?,?,?,?,?,?,?,?) """
         cur.execute(insert, (doctorlicno, docname, area, hospitallicno, address, phone, aadhaar, pwd))
@@ -97,19 +97,19 @@ def add_doctor(doctorlicno, docname, area, hospitallicno, address, phone, aadhaa
 
 
 def drop_doctor(remove):
+    if not id_check(remove):
+        print("\n *-- User Doesn't exist --*")
+        return -1
     try:
-        if not id_check(remove):
-            print("\n *-- User Doesn't exist --*")
-            return -1
-        else:
-            conn = sqlite3.connect("project.db")
-            cur = conn.cursor()
-            delete_doc = "delete from doctors where D_id=?"
-            cur.execute(delete_doc, (remove,))
-            print("Successfully Deleted")
-            conn.commit()
-            conn.close()
-            return 1
+        conn = sqlite3.connect("project.db")
+        cur = conn.cursor()
+        delete_doc = "delete from doctors where D_id=?"
+        cur.execute(delete_doc, (remove,))
+        print("Successfully Deleted")
+        conn.commit()
+        conn.close()
+        return 1
+
     except sqlite3.Error as error:
         print("Failed to Delete record", error)
         return -1
@@ -177,7 +177,6 @@ def view_doctor():
         for j in range(len(added[i])):
             print(str(added[i][j]) + "\t\t", end=" ")
         print("\n")
-    conn.close()
     return 1
 
 
@@ -189,5 +188,3 @@ def id_check(remove):
     check_id_exist = len(cur.fetchall())
     if check_id_exist != 0:
         return True
-    else:
-        return False

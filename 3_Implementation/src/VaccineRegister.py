@@ -1,3 +1,4 @@
+# pylint: disable=R0801,R0913, R1705,E0402,C0301,C0114,C0116,C0121,C0103
 import sqlite3
 import re
 from datetime import datetime
@@ -99,5 +100,3 @@ def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOB
     else:
         print("Invalid Mobile number")
         return valid_mobile_no
-
-

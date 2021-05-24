@@ -6,13 +6,14 @@ from src import docregister
 from src import Hospital_payment_portal
 from src import book_appointment
 from src import VaccineRegister
+from src import doctorPortal
 
 conn = sqlite3.connect('project.db')
 c = conn.cursor()
 
 
 def admin_menu():
-    print("1. Hospital 2.Doctor ")
+    print("1. Hospital 2.Doctor 3. Appointments and patients")
     choice = int(input())
     if choice == 1:
         print("1. Add Hospital 2. Delete Hospital 3. View Patient visiting that hospital")
@@ -45,6 +46,8 @@ def admin_menu():
             HospitalDisplayPatient.patient_visiting_hospital(hospital_license_no)
     if choice == 2:
         docregister.doctor_details()
+    if choice == 3:
+        doctorPortal.doctor_portal()
 
 
 def user_menu():

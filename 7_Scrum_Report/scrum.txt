@@ -1,0 +1,88 @@
+Group Number 41
+
+Date: 24 May 2021
+Patient Management System
+
+
+Milan:
+What I have done so far:
+1.Hospital module
+2.Unit testing hospital module function
+3.Integration of code
+4.5 Uml diagrams
+
+What I will be doing:
+1.Adding workflows build
+
+Blockages Faced:
+1.Integration
+
+Vinuthna:
+What I have done so far:
+1. 4 UML diagrams
+2. Test Plan
+3. Appointment Booking Module
+4. Managing Kanban project template
+5. Unit tests for Appointment Booking module 
+
+What I will be doing:
+1. Git inspector
+2. Manage Kanban Project Template
+3. Update Test plan if required
+Blockages Faced:
+1. Import errors
+2. Failing Test cases
+3. Merge conflicts in Github
+
+
+Hanumantha:
+What I have done so far:
+1. 5 UML diagrams
+2. Doctor Registration
+3. Doctor Portal
+4. Unit test cases for Doctor Registration
+5 .Added Few Requirements
+
+
+
+What I will be doing:
+1. Workflow for Static code analysis (pylint)
+
+Blockages Faced:
+1. Git conflicts
+2. Pytest
+3. Errors while working with sqlite3 database
+
+Uday:
+What I have done so far:
+1. 5 UML diagrams
+2. Research and introduction
+3. Payment module 
+4. Unit test cases for payment module
+
+What I will be doing:
+1. Try to write more test cases
+2. Workflow for Unit testing
+
+
+Blockages Faced:
+1. Issues in importing
+2. Errors while integrating with other modules
+3. Issues with database file
+
+ 
+Gowri Sripriya:
+What I have done so far:
+1. 5 UML Diagrams
+2. SWOT Analysis
+3. Vaccine Registration module
+4. Unit tests for Vaccine registration
+
+What I will be doing:
+1.Adding workflows build
+
+Blockages Faced:
+1. Import errors
+2. Failing Testcases
+3. Working with sqlite3 database
+
