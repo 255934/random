@@ -24,4 +24,4 @@ jobs:
         python -m pip install pyinstaller pytest
     - name: make all
       run: |
-        pytest 3_Implementation/IntegratedTestingFile.py
+        pytest 3_Implementation/test_func.py
