@@ -2,7 +2,7 @@
 import sqlite3
 import re
 from datetime import datetime
-from .Hospital_payment_portal import Payment
+import Hospital_payment_portal
 
 connection = sqlite3.connect('project.db')
 cursor = connection.cursor()
@@ -78,7 +78,7 @@ def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOB
                     connection.commit()
                     # Default fee for Vaccine booking is 500
                     # Payment() is in Uday's code.
-                    fail = Payment(MOBILE_NUMBER, 500, PATIENT_NAME)
+                    fail = Hospital_payment_portal.Payment(MOBILE_NUMBER, 500, PATIENT_NAME)
                     if fail == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (MOBILE_NUMBER,))

@@ -3,7 +3,6 @@ from src import HospitalDetailsAdd
 from src import DeleteHospital
 from src import HospitalDisplayPatient
 from src import docregister
-from src import Hospital_payment_portal
 from src import book_appointment
 from src import VaccineRegister
 from src import doctorPortal

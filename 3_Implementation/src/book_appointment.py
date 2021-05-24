@@ -2,7 +2,7 @@
 import re
 import sqlite3
 from datetime import datetime
-from .Hospital_payment_portal import Payment
+import Hospital_payment_portal
 
 
 
@@ -63,7 +63,7 @@ def book_appointment(mobile, doctor_id, hospital_id, date, symptom, app_time):
                         for j in range(len(data[i])):
                             name = data[i][j]
                     # print(type(name))
-                    pay_status = Payment(mobile, 200, name)
+                    pay_status = Hospital_payment_portal.Payment(mobile, 200, name)
                     if pay_status == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (mobile,))
