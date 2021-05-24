@@ -25,3 +25,9 @@ jobs:
     - name: make all
       run: |
         pylint ./3_Implementation/src/DeleteHospital.py 
+        pylint ./3_Implementation/src/HospitalDetailsAdd.py
+        pylint ./3_Implementation/src/HospitalDisplayPatient.py
+        pylint ./3_Implementation/src/Hospital_payment_portal.py
+        pylint ./3_Implementation/src/VaccineRegister.py
+        pylint ./3_Implementation/src/book_appointment.py
+        pylint ./3_Implementation/src/docregister.py
