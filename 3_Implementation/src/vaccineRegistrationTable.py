@@ -15,7 +15,7 @@ sql = ''' CREATE TABLE IF NOT EXISTS VACCINE(
 cursor.execute(sql)
 connection.commit()
 
-# insert_details="""insert into VACCINETABLE(HOSPITAL_ID,DOCTOR_ID,PATIENT_NAME,PATIENT_AGE,VACCINE_COUNT)
+# insert_details="""insert into VACCINE(HOSPITAL_ID,DOCTOR_ID,PATIENT_NAME,PATIENT_AGE,VACCINE_COUNT)
 # values(123, 521,"SRI",21,30) """
 # cursor.execute(insert_details)
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

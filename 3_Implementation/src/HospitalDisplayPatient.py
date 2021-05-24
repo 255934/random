@@ -1,5 +1,4 @@
 import sqlite3
-# ../ added by Vinuthna.
 conn = sqlite3.connect('project.db')
 c = conn.cursor()
 
@@ -17,7 +16,7 @@ def patient_visiting_hospital(hospital_license_no):
     # Care of table name for appointment table and the column name for hospital_license_no
     c.execute('select * from APPOINTMENT where HOSPITAL_ID = ?', (hospital_license_no,))
     d = c.fetchall()
-    if d == 0:
+    if len(d) == 0:
         print("No One is Visiting This hospital")
         return 8
     print("The number of people visiting", d)

@@ -56,13 +56,11 @@ def book_appointment(mobile, doctor_id, hospital_id, date, symptom, app_time):
                     sql = "SELECT name FROM user WHERE ph_no=?"
                     cursor.execute(sql, (mobile,))
                     data = cursor.fetchall()
-                    name=''
+                    name = ''
                     for i in range(len(data)):
                         for j in range(len(data[i])):
-                            name=data[i][j]
-                    print(type(name))
-
-
+                            name = data[i][j]
+                    # print(type(name))
                     pay_status = Payment(mobile, 200, name)
                     if pay_status == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"

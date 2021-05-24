@@ -2,6 +2,7 @@ import sqlite3
 import re
 from datetime import datetime
 from .Hospital_payment_portal import Payment
+
 connection = sqlite3.connect('project.db')
 cursor = connection.cursor()
 
@@ -53,49 +54,50 @@ def check_doctor_id(doctor_id, hospital_id):
 
 def check_mobile_number(mobile_number):
     if len(mobile_number) != 10:
-        return 10
+        return 10  # Mobile number invalid
     pattern = r"[7-9][0-9]{9}"
-    if not re.match(pattern, mobile_number):
+    if re.match(pattern, mobile_number):
         return 11  # Mobile number valid
-
-    sql = "SELECT CASE WHEN EXISTS(SELECT * FROM user WHERE ph_no=?) THEN '1' ELSE '0' END"
-    cursor.execute(sql, (mobile_number, ))
-    valid = cursor.fetchone()
-    if valid[0] == 1:
-        return 12  # Present in user table
     else:
-        return 13  # Not present in user table
+        return 12  # Mobile number invalid
 
 
 def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOBILE_NUMBER, GENDER):
     valid_mobile_no = check_mobile_number(MOBILE_NUMBER)
-    if valid_mobile_no == 12:
+    if valid_mobile_no == 11:
         valid_date = check_date(DATE)
         if valid_date == 2:
             valid_doctor = check_doctor_id(DOCTOR_ID, HOSPITAL_ID)
             if valid_doctor == 7:
                 available = check_available(HOSPITAL_ID)
                 if available == 5:
-
                     sql = 'INSERT INTO VACCINE VALUES(?,?,?,?,?,?,?)'
                     cursor.execute(sql,
                                    (HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOBILE_NUMBER, GENDER))
                     connection.commit()
                     # Default fee for Vaccine booking is 500
                     # Payment() is in Uday's code.
-                    fail = Payment(PATIENT_NAME, 500, MOBILE_NUMBER)
-                    if fail=='Payment Failed':
+                    fail = Payment(MOBILE_NUMBER, 500, PATIENT_NAME)
+                    if fail == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (MOBILE_NUMBER,))
                         connection.commit()
-                    return 20
+                        print("Registration unsuccessful")
+                        return -1
+                    else:
+                        print("Registration unsuccessful")
+                        return 20
                 else:
+                    print("Slots unavailable")
                     return available
             else:
+                print("Wrong Doctor ID or Hospital ID")
                 return valid_doctor
         else:
+            print("Invalid date")
             return valid_date
     else:
+        print("Invalid Mobile number")
         return valid_mobile_no
 
 

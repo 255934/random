@@ -3,13 +3,13 @@ import book_appointment
 
 # doctors table should contain D_id = 1234567 H_id = 23456789.
 def test_book_appointment():
-    assert book_appointment.book_appointment('9999999999', 1234567, 23456789, '17/10/2021', 'Cough') == 20
-    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17-10-2020', 'Cough') == 4
-    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17/13/2020', 'Cough') == 7
-    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17/10/2020', 'Cough') == 5
-    assert book_appointment.book_appointment('9999999999', 1234567, 234567, '17/10/2022', 'Cough') == 2
-    assert book_appointment.book_appointment('9999999999', 123456, 2345678, '17/10/2022', 'Cough') == 3
-    assert book_appointment.book_appointment('999999999', 23456789, 12345678, '17/10/2022', 'Cough') == 9
+    assert book_appointment.book_appointment('9999999999', 1234567, 23456789, '17/10/2021', 'Cough', '08 00') == 20
+    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17-10-2020', 'Cough', '08 30') == 4
+    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17/13/2020', 'Cough', '09 00') == 7
+    assert book_appointment.book_appointment('9999999999', 1234567, 2345678, '17/10/2020', 'Cough', '09 30') == 5
+    assert book_appointment.book_appointment('9999999999', 1234567, 234567, '17/10/2022', 'Cough', '10 00') == 2
+    assert book_appointment.book_appointment('9999999999', 123456, 2345678, '17/10/2022', 'Cough', '10 30') == 3
+    assert book_appointment.book_appointment('999999999', 23456789, 12345678, '17/10/2022', 'Cough', '11 00') == 9
 
 
 def test_check_date():
