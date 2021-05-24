@@ -24,4 +24,4 @@ jobs:
         python -m pip install pyinstaller flake8
     - name: make all
       run: |
-        flake8 --ignore=E501,F401 ./3_Implementation
+        flake8 --ignore=E501,F40,E9991 ./3_Implementation
