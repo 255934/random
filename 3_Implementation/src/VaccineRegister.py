@@ -1,7 +1,8 @@
 import sqlite3
 import re
 from datetime import datetime
-connection = sqlite3.connect('../project.db')
+from .Hospital_payment_portal import Payment
+connection = sqlite3.connect('project.db')
 cursor = connection.cursor()
 
 
@@ -57,7 +58,7 @@ def check_mobile_number(mobile_number):
     if not re.match(pattern, mobile_number):
         return 11  # Mobile number valid
 
-    sql = "SELECT CASE WHEN EXISTS(SELECT * FROM usertable WHERE mobile=?) THEN '1' ELSE '0' END"
+    sql = "SELECT CASE WHEN EXISTS(SELECT * FROM user WHERE ph_no=?) THEN '1' ELSE '0' END"
     cursor.execute(sql, (mobile_number, ))
     valid = cursor.fetchone()
     if valid[0] == 1:
@@ -75,14 +76,15 @@ def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOB
             if valid_doctor == 7:
                 available = check_available(HOSPITAL_ID)
                 if available == 5:
+
                     sql = 'INSERT INTO VACCINE VALUES(?,?,?,?,?,?,?)'
                     cursor.execute(sql,
                                    (HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOBILE_NUMBER, GENDER))
                     connection.commit()
                     # Default fee for Vaccine booking is 500
                     # Payment() is in Uday's code.
-                    fail, success = Payment(PATIENT_NAME, 500, MOBILE_NUMBER)
-                    if fail:
+                    fail = Payment(PATIENT_NAME, 500, MOBILE_NUMBER)
+                    if fail=='Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (MOBILE_NUMBER,))
                         connection.commit()
@@ -97,4 +99,3 @@ def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOB
         return valid_mobile_no
 
 
-connection.close()

@@ -3,7 +3,7 @@ from sys import exit
 
 
 def doctor_details():
-    connection = sqlite3.connect("../project.db")
+    connection = sqlite3.connect("project.db")
 
     cursor = connection.cursor()
     doctor = """CREATE TABLE IF NOT EXISTS

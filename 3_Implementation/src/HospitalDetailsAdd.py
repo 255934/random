@@ -1,7 +1,7 @@
 import sqlite3
 import re
 # ../ added by Vinuthna.
-conn = sqlite3.connect('../project.db')
+conn = sqlite3.connect('project.db')
 c = conn.cursor()
 
 

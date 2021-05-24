@@ -5,6 +5,7 @@ c = conn.cursor()
 
 c.execute("SELECT name FROM sqlite_master WHERE type='table';")
 print(c.fetchall())
-
+c.execute("select sql from sqlite_master where name='duetable'")
+print(c.fetchall())
 conn.commit()
 conn.close()

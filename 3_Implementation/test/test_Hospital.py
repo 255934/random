@@ -1,3 +1,4 @@
+from src/HospitalDetailsAdd import hospital_add
 from HospitalDetailsAdd import hospital_add
 from DeleteHospital import hospital_delete
 from HospitalDisplayPatient import patient_visiting_hospital

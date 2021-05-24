@@ -1,5 +1,5 @@
 import sqlite3
-
+'''
 conn = sqlite3.connect('../project.db')
 c = conn.cursor()
 # c.execute("""CREATE TABLE wallettable (name text, mobile text PRIMARY KEY, amount int)""")
@@ -11,7 +11,7 @@ c = conn.cursor()
 conn.commit()
 conn.close()
 
-
+'''
 def Payment(mobile, due, name):
     cnt = 0
     for i in mobile:
@@ -23,7 +23,7 @@ def Payment(mobile, due, name):
         else:
             status = 1
 
-        conn = sqlite3.connect('../project.db')
+        conn = sqlite3.connect('project.db')
         c = conn.cursor()
         d = c.execute('SELECT * from duetable where mobile = ? ', (mobile,))
         set_status = d.fetchall()
@@ -54,7 +54,7 @@ def Payment(mobile, due, name):
 
 def payment_wallet(mobile, due, name):
     initial_amount = 0
-    conn = sqlite3.connect('../project.db')
+    conn = sqlite3.connect('project.db')
     c = conn.cursor()
     d = c.execute('SELECT * from wallettable where mobile = ? ', (mobile,))
     w_data = d.fetchall()
@@ -99,7 +99,7 @@ def payment_wallet(mobile, due, name):
 
 def payment_upi(mobile, due, name, val):
     val1 = val
-    conn = sqlite3.connect('../project.db')
+    conn = sqlite3.connect('project.db')
     if val1 == 'payment':
         upi_user = input('\nEnter 1 to create upi \nEnter 2 to pay \nEnter 3 to check balance \n Anyother to GoBack')
         if upi_user == '1':

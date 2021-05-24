@@ -4,22 +4,15 @@ connection = sqlite3.connect("../project.db")
 cursor = connection.cursor()
 # DID - 8 digits, HID - 8 digits
 
-# cursor.execute("DROP TABLE APPOINTMENT")
-# connection.commit()
-
-sql = '''CREATE TABLE IF NOT EXISTS APPOINTMENT(
-    MOBILE TEXT PRIMARYKEY,
-    DOCTOR_ID INTEGER NOT NULL,
-    HOSPITAL_ID INT NOT NULL,
-    DATE VARCHAR(15) NOT NULL,
-    SYMPTOMS VARCHAR(200) NOT NULL,
-    APPOINTMENT_TIME VARCHAR(15) NOT NULL,
-    BOOKING_TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP
+cursor.execute("DROP TABLE APPOINTMENT")
+connection.commit()
+'''
+sql = '''
 )'''
 
 cursor.execute(sql)
 connection.commit()
-
+'''
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 print(cursor.fetchall())
 

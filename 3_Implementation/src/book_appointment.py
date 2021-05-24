@@ -1,9 +1,10 @@
 import sqlite3
 from datetime import datetime
-import Hospital_payment_portal
+from .Hospital_payment_portal import Payment
+
 import re
 
-connection = sqlite3.connect("../project.db")
+connection = sqlite3.connect("project.db")
 cursor = connection.cursor()
 
 
@@ -48,15 +49,21 @@ def book_appointment(mobile, doctor_id, hospital_id, date, symptom, app_time):
             if h_flag[0] == 'TRUE':
                 date_flag = check_date(date)
                 if date_flag == 6:
-                    sql = "INSERT INTO APPOINTMENT( MOBILE, DOCTOR_ID, HOSPITAL_ID, DATE, SYMPTOMS, APPOINTMENT_TIME) VALUES(?, ?, ?, ?, ?, ?)"
-                    cursor.execute(sql, (mobile, doctor_id, hospital_id, date, symptom, app_time))
+                    sql = "INSERT INTO APPOINTMENT( MOBILE, DOCTOR_ID, HOSPITAL_ID, DATE, SYMPTOMS,APPOINTMENT_TIME) VALUES(?, ?, ?, ?, ?,?)"
+                    cursor.execute(sql, (mobile, doctor_id, hospital_id, date, symptom,app_time))
                     connection.commit()
                     # default fee = 200 for a general appointment.
                     sql = "SELECT name FROM user WHERE ph_no=?"
                     cursor.execute(sql, (mobile,))
                     data = cursor.fetchall()
-                    name = data[0][0]
-                    pay_status = Hospital_payment_portal.Payment(mobile, 200, name)
+                    name=''
+                    for i in range(len(data)):
+                        for j in range(len(data[i])):
+                            name=data[i][j]
+                    print(type(name))
+
+
+                    pay_status = Payment(mobile, 200, name)
                     if pay_status == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (mobile,))
