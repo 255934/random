@@ -24,4 +24,4 @@ jobs:
         python -m pip install pyinstaller pylint
     - name: make all
       run: |
-        pylint ./3_Implementation/Login.py
+        pylint ./3_Implementation/src/HospitalDetailsAdd 
