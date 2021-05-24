@@ -121,10 +121,5 @@ def test_chech_id():
     assert docregister.id_check(65112334) == False
     assert docregister.id_check(65112337) == False
 
-def test_drop_doctor():
-    assert docregister.drop_doctor(65412337) == 1
-    assert docregister.drop_doctor(65412333) == 1
-    assert docregister.drop_doctor(65412334) == 1
-    assert docregister.drop_doctor(65412335) == 1
-    assert docregister.drop_doctor(65412336) == 1
+
 
