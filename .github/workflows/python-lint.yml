@@ -31,3 +31,4 @@ jobs:
         pylint ./3_Implementation/src/VaccineRegister.py
         pylint ./3_Implementation/src/book_appointment.py
         pylint ./3_Implementation/src/docregister.py
+        pylint ./3_Implementation/Login.py
