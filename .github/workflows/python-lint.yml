@@ -24,4 +24,4 @@ jobs:
         python -m pip install pyinstaller pylint
     - name: make all
       run: |
-        pylint ./3_Implementation
+        pylint ./3_Implementation/src
