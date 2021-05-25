@@ -1,4 +1,4 @@
-# pylint: disable=R0801,R0913, R1705,E0402,C0301,C0114,C0116,C0121,C0103
+# pylint: disable=E0401,R0801,R0913, R1705,E0402,C0301,C0114,C0116,C0121,C0103
 import sqlite3
 import re
 from datetime import datetime
