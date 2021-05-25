@@ -1,4 +1,4 @@
-# pylint: disable=  C0114, C0116,C0103
+# pylint: disable=C0103,C0114,C0116,C0103
 import sqlite3
 conn = sqlite3.connect('project.db')
 c = conn.cursor()

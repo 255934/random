@@ -1,6 +1,6 @@
 # pylint: disable=C0114,C0103
 import sqlite3
-conn = sqlite3.connect('../../3_Implementation/project.db')
+conn = sqlite3.connect('../project.db')
 c = conn.cursor()
 c.execute("""CREATE TABLE wallettable (name text, mobile text PRIMARY KEY, amount int)""")
 c.execute("""CREATE TABLE upitable (name text, mobile text, upipin int, acc_balance int )""")

@@ -1,6 +1,5 @@
-# pylint: disable= R0914, R0912, R0915,C0301,C0114,C0116,C0121,C0103, R1705, R1710
+# pylint: disable=R1705,E1111, W0105,W0612,R0912,R0915, R0914,W0702,R1710,C0301,C0114,C0116,C0121,C0103
 import sqlite3
-
 
 def Payment(mobile, due, name):
     cnt = 0
@@ -26,17 +25,17 @@ def Payment(mobile, due, name):
 
         payment_type = input("Enter 1 to pay through Wallet \n 2 to pay through upi \n Enter other key to exit")
         if payment_type == '1':
-            payment_wallet(mobile, due, name)
+            value = payment_wallet(mobile, due, name)
 
         elif payment_type == '2':
-            payment_upi(mobile, due, name, val='payment')
+            value = payment_upi(mobile, due, name, val='payment')
 
         d = c.execute('SELECT * from duetable where mobile = ? ', (mobile,))
         status_data = d.fetchall()
         if status_data[0][2] == 1:
             return 'Payment Success'
-
-        return 'Payment Failed'
+        else:
+            return 'Payment Failed'
 
     else:
         return 'Invalid Mobile number'
@@ -61,8 +60,9 @@ def payment_wallet(mobile, due, name):
 
     if mode_selection == '1':
         # adding money to wallet
-        payment_upi(mobile, due, name, 'add_to_wallet')
-
+        value_add = payment_upi(mobile, due, name, 'add_to_wallet')
+        '''if value_add == False:
+            return False'''
     elif mode_selection == '2':
         c = conn.cursor()
         d = c.execute('SELECT * from wallettable where mobile = ? ', (mobile,))
@@ -105,7 +105,7 @@ def payment_upi(mobile, due, name, val):
                     try:
                         upi_pin1 = int(input("\nEnter four digit upi pin"))
                         return upi_pin1
-                    except ValueError:
+                    except:
                         print("\nplease enter integer")
                         pin1_generation()
 
@@ -113,7 +113,7 @@ def payment_upi(mobile, due, name, val):
                     try:
                         upi_pin2 = int(input("\nRe Enter four digit upi pin"))
                         return upi_pin2
-                    except ValueError:
+                    except:
                         print("\nplease enter integer")
                         pin2_generation()
 

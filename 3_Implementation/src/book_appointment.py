@@ -1,8 +1,8 @@
-# pylint: disable=E0401,C0301,C0114,C0116,C0121,C0103,R0914,R0913,C0303,C0200,W0622,R1710.R1705,R1702,R0912,E0402
+# pylint: disable=R0801,E0401,C0301,C0114,C0116,C0121,C0103,R0914,R0913,C0303,C0200,W0622,R1710.R1705,R1702,R0912,E0402
 import re
 import sqlite3
 from datetime import datetime
-import Hospital_payment_portal
+from .Hospital_payment_portal import Payment
 
 
 
@@ -63,7 +63,7 @@ def book_appointment(mobile, doctor_id, hospital_id, date, symptom, app_time):
                         for j in range(len(data[i])):
                             name = data[i][j]
                     # print(type(name))
-                    pay_status = Hospital_payment_portal.Payment(mobile, 200, name)
+                    pay_status = Payment(mobile, 200, name)
                     if pay_status == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (mobile,))

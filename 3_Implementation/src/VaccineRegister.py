@@ -1,8 +1,8 @@
-# pylint: disable=E0401,R0801,R0913, R1705,E0402,C0301,C0114,C0116,C0121,C0103
+# pylint: disable= R0801,E0401,E0402,R1705,R0913,C0301,C0114,C0116,C0121,C0103
 import sqlite3
 import re
 from datetime import datetime
-import Hospital_payment_portal
+from .Hospital_payment_portal import Payment
 
 connection = sqlite3.connect('project.db')
 cursor = connection.cursor()
@@ -78,7 +78,7 @@ def patient_details(HOSPITAL_ID, DOCTOR_ID, PATIENT_NAME, PATIENT_AGE, DATE, MOB
                     connection.commit()
                     # Default fee for Vaccine booking is 500
                     # Payment() is in Uday's code.
-                    fail = Hospital_payment_portal.Payment(MOBILE_NUMBER, 500, PATIENT_NAME)
+                    fail = Payment(MOBILE_NUMBER, 500, PATIENT_NAME)
                     if fail == 'Payment Failed':
                         sql = "DELETE FROM APPOINTMENT WHERE mobile=?"
                         cursor.execute(sql, (MOBILE_NUMBER,))

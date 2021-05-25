@@ -1,5 +1,5 @@
 import sqlite3
-connection = sqlite3.connect("../../3_Implementation/project.db")
+connection = sqlite3.connect("../project.db")
 cursor = connection.cursor()
 
 doctor = """CREATE TABLE IF NOT EXISTS APPOINTMENT(

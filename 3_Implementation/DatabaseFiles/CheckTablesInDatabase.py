@@ -1,7 +1,7 @@
 # pylint: disable=C0103,C0114
 import sqlite3
 
-conn = sqlite3.connect('../../3_Implementation/project.db')
+conn = sqlite3.connect('../project.db')
 c = conn.cursor()
 
 c.execute("SELECT name FROM sqlite_master WHERE type='table';")

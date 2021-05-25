@@ -1,7 +1,7 @@
 # pylint: disable=C0301,C0114,C0116,C0121,C0103,R0914,R0913,C0303,C0200,W0622,R1710
 import sqlite3
 
-connection = sqlite3.connect("../../3_Implementation/project.db")
+connection = sqlite3.connect("../project.db")
 cursor = connection.cursor()
 # DID - 8 digits, HID - 8 digits
 
